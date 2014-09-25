@@ -11,9 +11,14 @@ This configuration is originally based on https://github.com/mulderp/chef-rails-
 2. Install Virtualbox from http://virtualbox.org
 3. Clone this repo
 4. Open a command line (cmd.exe, Terminal.app, xterm, etc) and enter the directory of the repo
-5. Run the command `vagrant up`.  This will download, install, boot, and provision the VM.
-6. Run the command `vagrant ssh`.  This will ssh into the VM that is now running.
-7. Start the ShadowCraft UI backend running by running the following commands:
+5. Run the following commands to initialize the vagrant environment.
+    vagrant plugin install vagrant-omnibus
+    vagrant plugin install vagrant-berkshelf --plugin-version 2.0.1
+    bundle install --path gems
+    ./bin/berks install
+6. Run the command `vagrant up`.  This will download, install, boot, and provision the VM.
+7. Run the command `vagrant ssh`.  This will ssh into the VM that is now running.
+8. Start the ShadowCraft UI backend running by running the following commands:
     cd /var/www/shadowcraft-ui/backend
     twistd -ny server-5.4.toc
 
@@ -23,10 +28,10 @@ The environment can be modified to use other versions of the shadowcraft UI and 
 
 The version of ruby/rails/passenger/nginx/etc can be changed by modifying the node.json file.  It currently defaults to the following versions:
 
-ruby: 1.8.7-p374
-rails: 3.2.19
-nginx: 1.2.5
-passenger: 3.0.18
+* ruby: 1.8.7-p374
+* rails: 3.2.19
+* nginx: 1.2.5
+* passenger: 3.0.18
 
 The same destroy/up cycle needs to happen if you change the node.json file as well.
 
