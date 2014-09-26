@@ -18,20 +18,6 @@
     "gid": 4000
   }],
 
-  "rvm": {
-    "rubies": ["1.8.7-p374"],
-    "default_ruby": "1.8.7-p374",
-    "vagrant": { "system_chef_solo" : "/opt/ruby/bin/chef-solo" },
-    "gems": {
-      "1.8.7": [
-        {"name": "bundler"},
-        {"name": "rake"},
-        {"name": "rails",
-         "version": "3.2.19"}
-      ]
-    }
-  },
-
   "nginx": {
     "version": "1.2.5",
     "user": "deploy",
@@ -43,10 +29,10 @@
     ],
     "passenger": {
       "version": "3.0.18",
-      "gem_binary": "/usr/local/rvm/wrappers/ruby-1.8.7-p374/gem"
+      "gem_binary": "/usr/bin/gem"
     },
     "configure_flags": [
-      "--add-module=/usr/local/rvm/gems/ruby-1.8.7-p374/gems/passenger-3.0.18/ext/nginx"
+      "--add-module=/var/lib/gems/1.8/gems/passenger-3.0.18/ext/nginx"
     ],
     "gzip_types": [
       "text/plain",

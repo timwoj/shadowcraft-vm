@@ -10,6 +10,7 @@ git checkout pre6.0
 
 # Post-clone setup for the UI
 gem install bundler
+bundle install
 bundle install --deployment
 chown -R deploy:deploy /var/www/shadowcraft-ui
 
@@ -33,9 +34,6 @@ EOF
 cd /etc/nginx/conf.d
 sed -i 's|^passenger_ruby .*|passenger_ruby /usr/local/rvm/rubies/ruby-1.8.7-p374/bin/ruby;|' /etc/nginx/conf.d/passenger.conf
 sed -i 's|^passenger_root .*|passenger_root /usr/local/rvm/gems/ruby-1.8.7-p374/gems/passenger-3.0.18;|' /etc/nginx/conf.d/passenger.conf
-
-# Restart nginx to pick up the changes we just made to the config
-service nginx restart
 
 # Clone and install the shadowcraft engine
 cd /usr/local
