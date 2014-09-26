@@ -25,7 +25,7 @@ This configuration is originally based on https://github.com/mulderp/chef-rails-
 7. Run the command `vagrant ssh`.  This will ssh into the VM that is now running.
 8. Start the ShadowCraft UI backend running by running the following commands:
     cd /var/www/shadowcraft-ui/backend
-    twistd -ny server-5.4.toc
+    twistd -ny server-6.0.toc
 
 ## Runtime and provisioning edits
 
