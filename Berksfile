@@ -4,7 +4,7 @@ cookbook 'apt'
 cookbook 'build-essential'
 cookbook 'users'
 cookbook 'sudo'
-cookbook 'rvm', :git => "https://github.com/fnichol/chef-rvm"
+cookbook 'ruby_install'
 cookbook 'curl'
 cookbook 'nginx'
 cookbook 'mongodb'

@@ -17,7 +17,7 @@ chown -R deploy:deploy /var/www/shadowcraft-ui
 # Add a site configuration for the UI site.  This hosts the site on port 81 on the VM, which
 # should be mapped to port 8080 on the host machine.
 cd /etc/nginx/sites-enabled
-cat <<EOF >> shadowcraft
+cat <<EOF > shadowcraft
 server {
   listen 81;
   server_name ubuntu-12;
@@ -32,8 +32,8 @@ EOF
 
 # Update the nginx config to point at the right versions of ruby and passenger
 cd /etc/nginx/conf.d
-sed -i 's|^passenger_ruby .*|passenger_ruby /usr/local/rvm/rubies/ruby-1.8.7-p374/bin/ruby;|' /etc/nginx/conf.d/passenger.conf
-sed -i 's|^passenger_root .*|passenger_root /usr/local/rvm/gems/ruby-1.8.7-p374/gems/passenger-3.0.18;|' /etc/nginx/conf.d/passenger.conf
+sed -i 's|^passenger_ruby .*|passenger_ruby /usr/bin/ruby1.8;|' /etc/nginx/conf.d/passenger.conf
+sed -i 's|^passenger_root .*|passenger_root /var/lib/gems/1.8/gems/passenger-3.0.18/;|' /etc/nginx/conf.d/passenger.conf
 
 # Clone and install the shadowcraft engine
 cd /usr/local
