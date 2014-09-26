@@ -1,9 +1,9 @@
 shadowcraft-vm
 ==============
 
-Vagrant configuration for running Shadowcraft-UI and Shadowcraft-Engine
+Vagrant configuration for running Shadowcraft-UI ([https://github.com/cheald/shadowcraft-ui]()) and Shadowcraft-Engine ([https://github.com/dazer/ShadowCraft-Engine]()).  See those projects for more information about what they do individually.
 
-This configuration is originally based on https://github.com/mulderp/chef-rails-stack.
+This Vagrant configuration is originally based on [https://github.com/mulderp/chef-rails-stack]().
 
 ## Installation
 
@@ -21,13 +21,23 @@ This configuration is originally based on https://github.com/mulderp/chef-rails-
     
     ./bin/berks install
 ```
-6. Run the command `vagrant up`.  This will download, install, boot, and provision the VM.
-7. Run the command `vagrant ssh`.  This will ssh into the VM that is now running.
-8. Start the ShadowCraft UI backend running by running the following commands:
+6. Run the command `vagrant up`.  This will download, install, boot, and provision the VM.  This part will take a while, up to about 45 minutes depending on the speed of the host machine. Be patient.
+7. Run the command `vagrant reload`.  This causes the VM to reboot and load all of the changes that were just made.
+8. Run the command `vagrant ssh`.  This will ssh into the VM that is now running.
+9. Import the items and and other data into the database for the UI:
+```
+    cd /var/www/shadowcraft-ui
+    rails console production
+    > Item.populate_gear("wod","wowhead_wod")
+    > Item.populate_gems
+    > Glyph.populate!
+    > Enchant.update_from_json!
+```
+9. Start the ShadowCraft UI backend running by running the following commands:
     cd /var/www/shadowcraft-ui/backend
-    twistd -ny server-6.0.toc
+    twistd -ny server-6.0.toc &
 
-## Runtime and provisioning edits
+## Editing runtime and provisioning
 
 The environment can be modified to use other versions of the shadowcraft UI and backend as needed during the provisioning by modifying the shadowcraft-setup.sh file.  If this file is changed after the VM has already been provisioned, you may recreate the VM by running `vagrant destroy` followed by `vagrant up`.  This will completely rebuild the VM, so you'll need to restart the backend again.
 
@@ -41,5 +51,7 @@ The version of ruby/rails/passenger/nginx/etc can be changed by modifying the no
 The same destroy/up cycle needs to happen if you change the node.json file as well.
 
 ## Running Shadowcraft from the VM
+
+The engine is automatically started by the UI backend script.  This is called from /etc/rc.local.
 
 Once the VM is up and configured, you can get to the Shadowcraft UI by opening a web browser on your local machine and going to http://localhost:8080.
