@@ -23,15 +23,15 @@ Vagrant configuration for running [Shadowcraft-UI](https://github.com/cheald/sha
 9. Import the items and and other data into the database for the UI:
 ```
     cd /var/www/shadowcraft-ui
-    rails console production
+    sudo rails console production
     > Item.populate_gear("wod","wowhead_wod")
-    > Item.populate_gems
+    > Item.populate_gems("wod","wowhead_wod")
     > Glyph.populate!
     > Enchant.update_from_json!
 ```
 9. Start the ShadowCraft UI backend running by running the following commands:
     cd /var/www/shadowcraft-ui/backend
-    twistd -ny server-6.0.toc &
+    sudo twistd -ny server-6.0.toc &
 
 ## Editing runtime and provisioning
 
