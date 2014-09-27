@@ -32,7 +32,7 @@ Vagrant configuration for running [Shadowcraft-UI](https://github.com/cheald/sha
 9. Start the ShadowCraft UI backend running by running the following commands:
 ```
     cd /var/www/shadowcraft-ui/backend
-    sudo twistd -ny server-6.0.toc &
+    sudo twistd -ny server-6.0.tac &
 ```
 
 ## Editing runtime and provisioning
