@@ -11,7 +11,7 @@ Vagrant configuration for running [Shadowcraft-UI](https://github.com/cheald/sha
 2. Install Virtualbox from [http://virtualbox.org](http://virtualbox.org)
 3. Clone this repo
 4. Open a command line (xterm, Terminal.app, etc) and enter the directory of the repo
-5. Run the following commands to initialize the vagrant environment
+5. Run the following commands to initialize the vagrant environment:
 ```
     vagrant plugin install vagrant-omnibus
     vagrant plugin install vagrant-berkshelf --plugin-version 2.0.1
@@ -28,7 +28,7 @@ Vagrant configuration for running [Shadowcraft-UI](https://github.com/cheald/sha
 4. Copy bsdtar.exe from C:\HashiCorp\Vagrant\embedded\bin to C:\HashiCorp\Vagrant\bin and name it tar.exe.
 4. Clone this repo
 6. Open a command line (cmd.exe) and enter the directory of the cloned repo
-5. Run the following commands to initialize the vagrant environment
+5. Run the following commands to initialize the vagrant environment:
 ```
     vagrant plugin install vagrant-omnibus
     vagrant plugin install vagrant-berkshelf --plugin-version 2.0.1
@@ -42,7 +42,9 @@ Vagrant configuration for running [Shadowcraft-UI](https://github.com/cheald/sha
 
 1. Run the command `vagrant up`.  This will download, install, boot, and provision the VM.  This part will take a while, up to about 45 minutes depending on the speed of the host machine. Be patient.
 2. Run the command `vagrant reload`.  This causes the VM to reboot and load all of the changes that were just made.
-3. Run the command `vagrant ssh`.  This will ssh into the VM that is now running.
+3. SSH into the now-running VM:
+   - On Linux/OS X, run the command `vagrant ssh`.
+   - On Windows, run the command `vagrant ssh`.  This will fail but it will give you the information you need to use to connect to the VM using an SSH client such as PuTTY or SuperTerm.
 4. Within the ssh session, import the items and and other data into the database for the UI:
 ```
     cd /var/www/shadowcraft-ui
