@@ -3,7 +3,7 @@ shadowcraft-vm
 
 Vagrant configuration for running [Shadowcraft-UI](https://github.com/cheald/shadowcraft-ui) and [Shadowcraft-Engine](https://github.com/dazer/ShadowCraft-Engine).  See those projects for more information about what they do individually.
 
-## Installaion
+## Installation
 
 ### Linux/OS X Vagrant Setup/Configuration
 
