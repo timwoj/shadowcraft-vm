@@ -35,7 +35,7 @@ Vagrant configuration for running [Shadowcraft-UI](https://github.com/cheald/sha
     set PATH=%PATH%;C:\HashiCorp\Vagrant\embedded\bin;C:\opscode\chefdk\embedded\bin
     bundle install --path gems
     
-    ./bin/berks install
+    berks install
 ```
 
 ## Shadowcraft-VM Installation
