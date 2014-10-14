@@ -48,7 +48,7 @@ Vagrant configuration for running [Shadowcraft-UI](https://github.com/cheald/sha
 4. Within the ssh session, import the items and and other data into the database for the UI:
 ```
     cd /var/www/shadowcraft-ui
-    sudo rails console production
+    sudo rails console development
     > Item.populate_gear("wod","wowhead_wod")
     > Item.populate_gems("wod","wowhead_wod")
     > Glyph.populate!
