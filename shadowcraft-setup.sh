@@ -6,7 +6,6 @@ mkdir -p /var/www
 cd /var/www
 git clone http://github.com/cheald/shadowcraft-ui
 cd shadowcraft-ui
-git checkout pre6.0
 
 # Post-clone setup for the UI
 gem install bundler
@@ -26,6 +25,7 @@ server {
   location / {
     root /var/www/shadowcraft-ui/public;
     passenger_enabled on;
+    rails_env development;
   }
 }
 EOF
@@ -34,6 +34,9 @@ EOF
 cd /etc/nginx/conf.d
 sed -i 's|^passenger_ruby .*|passenger_ruby /usr/bin/ruby1.8;|' /etc/nginx/conf.d/passenger.conf
 sed -i 's|^passenger_root .*|passenger_root /var/lib/gems/1.8/gems/passenger-3.0.18/;|' /etc/nginx/conf.d/passenger.conf
+
+# Since everything was just updated in the nginx config, restart it.
+service nginx restart
 
 # Clone and install the shadowcraft engine
 cd /usr/local
