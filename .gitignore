@@ -1,0 +1,6 @@
+Berksfile.lock
+Gemfile.lock
+.vagrant
+.bundle
+.DS_Store
+gems
