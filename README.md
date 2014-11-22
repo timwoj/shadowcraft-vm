@@ -3,6 +3,8 @@ shadowcraft-vm
 
 Vagrant configuration for running [Shadowcraft-UI](https://github.com/cheald/shadowcraft-ui) and [Shadowcraft-Engine](https://github.com/dazer/ShadowCraft-Engine).  See those projects for more information about what they do individually.
 
+Setting up, using, and updating this virtual machine requires some knowledge of how Linux systems work and functioning knowledge of how to use a Linux shell.
+
 ## Installation
 
 ### Linux/OS X Vagrant Setup/Configuration
@@ -49,8 +51,8 @@ Vagrant configuration for running [Shadowcraft-UI](https://github.com/cheald/sha
 ```
     cd /var/www/shadowcraft-ui
     sudo rails console development
-    > Item.populate_gear("wod","wowhead_wod")
-    > Item.populate_gems("wod","wowhead_wod")
+    > Item.populate_gear_wod
+    > Item.populate_gems_wod
     > Glyph.populate!
     > Enchant.update_from_json!
 ```
@@ -75,3 +77,43 @@ The same destroy/up cycle needs to happen if you change the node.json file as we
 ## Running Shadowcraft from the VM
 
 Once the VM is up and configured, you can get to the Shadowcraft UI by opening a web browser on your local machine and going to `http://localhost:8080`.
+
+## Updating Shadowcraft-Engine
+
+Updates come out for the engine code periodically and you must update your installation manually.  This is easy to do from an ssh session to the VM.  Run these commands from a root shell on the VM:
+```
+    cd /usr/local/ShadowCraft-Engine
+    git pull
+    cd scripts
+    ./reinstall.sh
+```
+
+## Updating Shadowcraft-UI
+
+Updates come out for the UI code periodically and you must update your installation manually.  This is possible via an ssh session to the VM but requires more work than updating the engine.  It's preferred that you update the engine before updating the UI if necessary.  Run these commands from a root shell on the VM:
+```
+	cd /var/www/shadowcraft-ui
+	git pull
+	ps -ef | grep twistd
+	kill <the pid from the previous command>
+	cd /var/www/shadowcraft/backend
+	twistd -ny server-6.0.tac &
+	rm /var/www/shadowcraft/items-rogue.js
+	service nginx restart
+```
+At this point the UI code is updated and the services to run it are restarted.  If there were major changes to the UI code, it's suggested that you also dump and reload the database.  Run these commands from a root shell on the VM:
+```
+	mongo
+	> use roguesim_development
+	> db.dropDatabase()
+	> exit
+	cd /var/www/shadowcraft-ui
+	rails console development
+	> Item.populate_gear_wod
+	> Item.populate_gems_wod
+	> Glyph.populate!
+	> Enchant.update_from_json!
+	> exit
+	rm /var/www/shadowcraft/items-rogue.js
+	service nginx restart
+```	
