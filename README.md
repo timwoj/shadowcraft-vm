@@ -116,4 +116,5 @@ At this point the UI code is updated and the services to run it are restarted.  
 	> exit
 	rm /var/www/shadowcraft/items-rogue.js
 	service nginx restart
-```	
+```
+Due to a new changeover to using the Blizzard API for item data, the load will take quite some time.  Be patient.
