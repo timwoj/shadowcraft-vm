@@ -114,7 +114,7 @@ At this point the UI code is updated and the services to run it are restarted.  
 	> Glyph.populate!
 	> Enchant.update_from_json!
 	> exit
-	rm /var/www/shadowcraft/items-rogue.js
+	rm /var/www/shadowcraft/public/items-rogue.js
 	service nginx restart
 ```
 Due to a new changeover to using the Blizzard API for item data, the load will take quite some time.  Be patient.
