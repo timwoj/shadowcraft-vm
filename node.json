@@ -20,6 +20,7 @@
 
   "nginx": {
     "version": "1.2.5",
+    "source": {"checksum": "87392b8ebc3a763589bdf3f0578cad323bb4ddd327a84243eb4a8babbbd79ddd"},
     "user": "deploy",
     "init_style": "init",
     "modules": [
