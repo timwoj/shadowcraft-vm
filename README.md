@@ -47,11 +47,7 @@ Setting up, using, and updating this virtual machine requires some knowledge of 
 3. SSH into the now-running VM:
    - On Linux/OS X, run the command `vagrant ssh`.
    - On Windows, run the command `vagrant ssh`.  This will fail but it will give you the information you need to use to connect to the VM using an SSH client such as PuTTY or SuperTerm.
-4. Within the ssh session, add your Blizzard API key to the Shadowcraft-UI configuration so that data can be imported from the API.  Edit the /var/www/shadowcraft-ui/config/auth_key.yml (or add the file if it doesn't exist) and make sure there's a line that reads:
-```
-    apikey: <YOUR KEY>
-```
-replace <YOUR KEY> with the key from the Blizzard API site at https://dev.battle.net/io-docs
+4. Within the ssh session, add your Blizzard API key to the Shadowcraft-UI configuration so that data can be imported from the API.  Edit the /var/www/shadowcraft-ui/config/auth_key.yml (or add the file if it doesn't exist) and make sure there's a line that starts with 'apikey' that is set to your key from https://dev.battle.net/io-docs.  Replace the line if one already exists.
 5. Within the ssh session, import the items and and other data into the database for the UI:
 ```
     cd /var/www/shadowcraft-ui
