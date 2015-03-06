@@ -47,7 +47,12 @@ Setting up, using, and updating this virtual machine requires some knowledge of 
 3. SSH into the now-running VM:
    - On Linux/OS X, run the command `vagrant ssh`.
    - On Windows, run the command `vagrant ssh`.  This will fail but it will give you the information you need to use to connect to the VM using an SSH client such as PuTTY or SuperTerm.
-4. Within the ssh session, import the items and and other data into the database for the UI:
+4. Within the ssh session, add your Blizzard API key to the Shadowcraft-UI configuration so that data can be imported from the API.  Edit the /var/www/shadowcraft-ui/config/auth_key.yml (or add the file if it doesn't exist) and make sure there's a line that reads:
+```
+    apikey: <YOUR KEY>
+```
+replace <YOUR KEY> with the key from the Blizzard API site at https://dev.battle.net/io-docs
+5. Within the ssh session, import the items and and other data into the database for the UI:
 ```
     cd /var/www/shadowcraft-ui
     sudo rails console development
@@ -56,7 +61,7 @@ Setting up, using, and updating this virtual machine requires some knowledge of 
     > Glyph.populate!
     > Enchant.update_from_json!
 ```
-5. Within the ssh session, start the ShadowCraft UI backend running by running the following commands:
+6. Within the ssh session, start the ShadowCraft UI backend running by running the following commands:
 ```
     cd /var/www/shadowcraft-ui/backend
     sudo twistd -ny server-6.0.tac &
