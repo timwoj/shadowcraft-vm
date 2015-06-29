@@ -16,7 +16,6 @@ Setting up, using, and updating this virtual machine requires some knowledge of 
 5. Run the following commands to initialize the vagrant environment:
 ```
     vagrant plugin install vagrant-omnibus
-    vagrant plugin install vagrant-berkshelf --plugin-version 2.0.1
     bundle install --path gems
 ```
 
@@ -30,7 +29,6 @@ Setting up, using, and updating this virtual machine requires some knowledge of 
 6. Run the following commands to initialize the vagrant environment:
 ```
     vagrant plugin install vagrant-omnibus
-    vagrant plugin install vagrant-berkshelf --plugin-version 2.0.1
     set PATH=%PATH%;C:\HashiCorp\Vagrant\embedded\bin
     bundle install --path gems
 ```
@@ -62,13 +60,8 @@ Setting up, using, and updating this virtual machine requires some knowledge of 
 
 The environment can be modified to use other versions of the shadowcraft UI and backend as needed during the provisioning by modifying the shadowcraft-setup.sh file.  If this file is changed after the VM has already been provisioned, you may recreate the VM by running `vagrant destroy` followed by `vagrant up`.  This will completely rebuild the VM, so you'll need to restart the backend again.
 
-The version of rails/passenger/nginx/etc can be changed by modifying the node.json file.  It currently defaults to the following versions:
-
-* rails: 3.2.19
-* nginx: 1.2.5
-* passenger: 3.0.18
-
-The same destroy/up cycle needs to happen if you change the node.json file as well.
+The version of rails can be changed by modifying the apt_packages.sh file.  It
+currently defaults to version 3.2.19.  The same destroy/up cycle needs to happen if you change the apt_packages.sh file as well.
 
 ## Running Shadowcraft from the VM
 
@@ -88,29 +81,29 @@ Updates come out for the engine code periodically and you must update your insta
 
 Updates come out for the UI code periodically and you must update your installation manually.  This is possible via an ssh session to the VM but requires more work than updating the engine.  It's preferred that you update the engine before updating the UI if necessary.  Run these commands from a root shell on the VM:
 ```
-	cd /var/www/shadowcraft-ui
-	git pull
-	ps -ef | grep twistd
-	kill <the pid from the previous command>
-	cd /var/www/shadowcraft/backend
-	twistd -ny server-6.0.tac &
-	rm /var/www/shadowcraft/items-rogue.js
-	service nginx restart
+    cd /var/www/shadowcraft-ui
+    git pull
+    ps -ef | grep twistd
+    kill <the pid from the previous command>
+    cd /var/www/shadowcraft/backend
+    twistd -ny server-6.0.tac &
+    rm /var/www/shadowcraft/items-rogue.js
+    service nginx restart
 ```
 At this point the UI code is updated and the services to run it are restarted.  If there were major changes to the UI code, it's suggested that you also dump and reload the database.  Run these commands from a root shell on the VM:
 ```
-	mongo
-	> use roguesim_development
-	> db.dropDatabase()
-	> exit
-	cd /var/www/shadowcraft-ui
-	rails console development
-	> Item.populate_gear_wod
-	> Item.populate_gems_wod
-	> Glyph.populate!
-	> Enchant.update_from_json!
-	> exit
-	rm /var/www/shadowcraft/public/items-rogue.js
-	service nginx restart
+    mongo
+    > use roguesim_development
+    > db.dropDatabase()
+    > exit
+    cd /var/www/shadowcraft-ui
+    rails console development
+    > Item.populate_gear_wod
+    > Item.populate_gems_wod
+    > Glyph.populate!
+    > Enchant.update_from_json!
+    > exit
+    rm /var/www/shadowcraft/public/items-rogue.js
+    service nginx restart
 ```
 Due to a new changeover to using the Blizzard API for item data, the load will take quite some time.  Be patient.

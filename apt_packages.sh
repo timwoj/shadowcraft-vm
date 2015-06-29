@@ -5,7 +5,7 @@
 apt-mark hold ruby
 
 apt-get update
-apt-get install -y rubygems python-twisted git libxml2-dev libxslt-dev curl libcurl4-openssl-dev python-software-properties mongodb
+apt-get install -y rubygems python-twisted git libxml2-dev libxslt-dev curl libcurl4-openssl-dev python-software-properties mongodb vim
 
 # Install bundler, rake, and specific versions of some of the gems that are
 # either known to work with ShC or work-around specific problems in the
