@@ -18,26 +18,21 @@ Setting up, using, and updating this virtual machine requires some knowledge of 
     vagrant plugin install vagrant-omnibus
     vagrant plugin install vagrant-berkshelf --plugin-version 2.0.1
     bundle install --path gems
-    
-    ./bin/berks install
 ```
 
 ### Windows Vagrant Setup/Configuration
 
 1. Install Vagrant from [http://vagrantup.com](http://vagrantup.com)
 2. Install Virtualbox from [http://virtualbox.org](http://virtualbox.org)
-3. Install Chef-DK from [https://downloads.getchef.com/chef-dk/windows](https://downloads.getchef.com/chef-dk/windows)
-4. Copy bsdtar.exe from C:\HashiCorp\Vagrant\embedded\bin to C:\HashiCorp\Vagrant\bin and name it tar.exe.
+3. Copy bsdtar.exe from C:\HashiCorp\Vagrant\embedded\bin to C:\HashiCorp\Vagrant\bin and name it tar.exe.
 4. Clone this repo
-6. Open a command line (cmd.exe) and enter the directory of the cloned repo
-5. Run the following commands to initialize the vagrant environment:
+5. Open a command line (cmd.exe) and enter the directory of the cloned repo
+6. Run the following commands to initialize the vagrant environment:
 ```
     vagrant plugin install vagrant-omnibus
     vagrant plugin install vagrant-berkshelf --plugin-version 2.0.1
-    set PATH=%PATH%;C:\HashiCorp\Vagrant\embedded\bin;C:\opscode\chefdk\embedded\bin
+    set PATH=%PATH%;C:\HashiCorp\Vagrant\embedded\bin
     bundle install --path gems
-    
-    berks install
 ```
 
 ## Shadowcraft-VM Installation
