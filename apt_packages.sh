@@ -28,6 +28,7 @@ curl -s -O https://raw.githubusercontent.com/jnstq/rails-nginx-passenger-ubuntu/
 mv nginx /etc/init.d/nginx
 chown root:root /etc/init.d/nginx
 chmod 755 /etc/init.d/nginx
+sed 's/^PIDSPATH=.*/PIDSPATH=\/var\/run/' /etc/init.d/nginx
 update-rc.d nginx defaults
 
 # reset the nginx config to something that works for us.  i would have
