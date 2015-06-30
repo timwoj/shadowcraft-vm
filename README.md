@@ -53,7 +53,8 @@ Setting up, using, and updating this virtual machine requires some knowledge of 
 6. Within the ssh session, start the ShadowCraft UI backend running by running the following commands:
 ```
     cd /var/www/shadowcraft-ui/backend
-    sudo twistd -ny server-6.0.tac &
+    mkdir log tmp
+    sudo ./restart.sh
 ```
 
 ## Editing runtime and provisioning
@@ -86,7 +87,7 @@ Updates come out for the UI code periodically and you must update your installat
     ps -ef | grep twistd
     kill <the pid from the previous command>
     cd /var/www/shadowcraft/backend
-    twistd -ny server-6.0.tac &
+    ./restart.sh
     rm /var/www/shadowcraft/items-rogue.js
     service nginx restart
 ```
