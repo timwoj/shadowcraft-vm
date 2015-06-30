@@ -21,8 +21,7 @@ how Linux systems work and functioning knowledge of how to use a Linux shell.
   2. Install Virtualbox from http://virtualbox.org
   3. Copy bsdtar.exe from `C:\HashiCorp\Vagrant\embedded\bin` to
      `C:\HashiCorp\Vagrant\bin and name it tar.exe`
-  4. Clone this repo
-  5. Open a command line (cmd.exe) and enter the directory of the cloned repo
+  5. Open a command line (cmd.exe)
   6. Run the following commands to initialize the vagrant environment:
 
     set PATH=%PATH%;C:\HashiCorp\Vagrant\embedded\bin
