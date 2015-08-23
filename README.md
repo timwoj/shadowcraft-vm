@@ -105,9 +105,9 @@ shell on the VM:
     git pull
     ps -ef | grep twistd
     kill <the pid from the previous command>
-    cd /var/www/shadowcraft/backend
+    cd /var/www/shadowcraft-ui/backend
     ./restart.sh
-    rm /var/www/shadowcraft/items-rogue.js
+    rm /var/www/shadowcraft-ui/items-rogue.js
     service nginx restart
 
 At this point the UI code is updated and the services to run it are restarted.
@@ -125,7 +125,7 @@ and reload the database. Run these commands from a root shell on the VM:
     > Glyph.populate!
     > Enchant.update_from_json!
     > exit
-    rm /var/www/shadowcraft/public/items-rogue.js
+    rm /var/www/shadowcraft-ui/public/items-rogue.js
     service nginx restart
 
 Due to a new changeover to using the Blizzard API for item data, the load will
