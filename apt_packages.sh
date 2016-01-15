@@ -21,6 +21,7 @@ id -u deploy &>/dev/null || useradd -r -G sudo deploy
 # install passenger and nginx to go with it
 gem install passenger
 passenger-install-nginx-module --auto --auto-download
+PASSENGER_VERSION=`ls -1 /var/lib/gems/1.8/gems | grep passenger-`
 
 # add an rc.d script for nginx
 cd
@@ -47,7 +48,7 @@ events {
 }
 
 http {
-    passenger_root /var/lib/gems/1.8/gems/passenger-5.0.11;
+    passenger_root /var/lib/gems/1.8/gems/${PASSENGER_VERSION};
     passenger_ruby /usr/bin/ruby1.8;
     passenger_max_pool_size 6;
     passenger_buffer_response on;
