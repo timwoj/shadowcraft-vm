@@ -19,6 +19,7 @@ sh -c 'echo deb https://oss-binaries.phusionpassenger.com/apt/passenger trusty m
 # Update everything and install some of the dependent packages we'll need for other things
 apt-get update
 apt-get install -y python-twisted git curl python-software-properties mongodb vim build-essential libgmp3-dev libcurl4-openssl-dev nodejs
+
 # Install rvm and a specific version of ruby
 gpg --keyserver hkp://keys.gnupg.net --recv-keys 409B6B1796C275462A1703113804BB82D39DC0E3
 curl -sSL https://get.rvm.io | bash -s stable --ruby=2.2.3
@@ -58,6 +59,13 @@ passenger_default_group www-data;
 EOF
 
 cat <<EOF > /etc/nginx/sites-enabled/shadowcraft
+upstream engine-7.0 {
+    server 127.0.0.1:8901;
+#    server 127.0.0.1:8902;
+#    server 127.0.0.1:8903;
+#    server 127.0.0.1:8904;
+}
+
 server {
     listen 81;
     server_name shadowcraft;
